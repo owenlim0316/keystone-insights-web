@@ -1,0 +1,37 @@
+To show your brand logo in emails via a Verified Mark Certificate (VMC), you must complete the following steps. This involves adding specific DNS TXT records to your domain registrar (e.g., GoDaddy, Cloudflare, Namecheap).
+
+---
+STEP 1: ENFORCE DMARC
+---
+Your domain MUST have a DMARC policy of at least `p=quarantine`. If you don't have one, add the following TXT record to your DNS:
+
+Host Name: _dmarc
+Record Type: TXT
+Value: v=DMARC1; p=quarantine; rua=mailto:admin@yourdomain.com;
+
+(Replace admin@yourdomain.com with the email address where you want to receive DMARC reports)
+
+---
+STEP 2: HOST THE LOGO
+---
+Your logo in the SVG Tiny PS format has been generated and placed in this repository as `logo.svg`. When this is deployed, it will be available at:
+https://yourdomain.com/logo.svg
+
+---
+STEP 3: OBTAIN A VMC
+---
+Apply for a VMC from a recognized Certificate Authority (like DigiCert or Entrust). You will need:
+- A registered trademark for your logo.
+- The `logo.svg` file we just created.
+Once approved, the CA will give you a VMC file (usually `.pem`). You must host this `.pem` file on your server (similar to how we hosted the logo) so it has a URL (e.g., https://yourdomain.com/certificate.pem).
+
+---
+STEP 4: PUBLISH THE BIMI RECORD
+---
+Once you have the `.pem` file URL and the logo URL, add the following TXT record to your DNS:
+
+Host Name: default._bimi
+Record Type: TXT
+Value: v=BIMI1; l=https://yourdomain.com/logo.svg; a=https://yourdomain.com/certificate.pem;
+
+(Replace the `yourdomain.com` placeholders with your actual domain and paths).
