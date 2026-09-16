@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy.html"
+    },
+    {
+      "source": "/tnc",
+      "destination": "/privacy-policy.html"
+    },
+    {
+      "source": "/vmc",
+      "destination": "/vmc.html"
+    }
+  ]
+}
